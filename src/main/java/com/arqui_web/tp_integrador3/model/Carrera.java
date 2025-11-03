@@ -3,6 +3,8 @@ package com.arqui_web.tp_integrador3.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.arqui_web.tp_integrador3.dto.CarreraDTO;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,12 +29,18 @@ public class Carrera {
 	public Carrera() {
 		super();
 	}
+	
+	public CarreraDTO toCarreraDTO() {
+		return new CarreraDTO(
+				getId(), 
+				getNombre());
+	}
 
 	public Carrera(String nombre) {
 		super();
 		this.nombre = nombre;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
