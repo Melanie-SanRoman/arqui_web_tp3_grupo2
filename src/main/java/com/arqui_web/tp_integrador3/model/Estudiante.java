@@ -54,11 +54,11 @@ public class Estudiante {
 		this.num_libreta = num_libreta;
 	}
 
-	public String getName() {
+	public String getNombre() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setNombre(String name) {
 		this.name = name;
 	}
 
@@ -70,11 +70,11 @@ public class Estudiante {
 		this.apellido = apellido;
 	}
 
-	public LocalDate getFecha_nacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fecha_nacimiento;
 	}
 
-	public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
+	public void setFechaNacimiento(LocalDate fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
 
@@ -102,11 +102,11 @@ public class Estudiante {
 		this.ciudad = ciudad;
 	}
 
-	public int getNum_libreta() {
+	public int getNumLibreta() {
 		return num_libreta;
 	}
 
-	public void setNum_libreta(int num_libreta) {
+	public void setNumLibreta(int num_libreta) {
 		this.num_libreta = num_libreta;
 	}
 
