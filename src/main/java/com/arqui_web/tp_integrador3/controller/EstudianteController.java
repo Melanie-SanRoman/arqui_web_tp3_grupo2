@@ -1,5 +1,7 @@
 package com.arqui_web.tp_integrador3.controller;
 
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,10 +35,8 @@ public class EstudianteController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<EstudianteDTO> obtenerEstudianteById(@PathVariable Long id) {
-		return service.obtenerEstudiante(id)
-				.map(e -> new EstudianteDTO(e.getId(), e.getNombre(), e.getApellido(), e.getFechaNacimiento(), e.getGenero(),
-						e.getDni(), e.getCiudad(), e.getNumLibreta()))
-				.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+		Optional<EstudianteDTO> encontrado = service.obtenerEstudiante(id);
+		return encontrado.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
 
 	@GetMapping
@@ -46,11 +46,8 @@ public class EstudianteController {
 	}
 
 	@PutMapping
-	public ResponseEntity<EstudianteDTO> updateEstudiante(@RequestBody EstudianteDTO dto,
-			@PathVariable Long id) {
-		return service.updateEstudiante(dto, id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+	public ResponseEntity<EstudianteDTO> updateEstudiante(@RequestBody EstudianteDTO dto, @PathVariable Long id) {
+		return service.updateEstudiante(dto, id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
 
 	@DeleteMapping("/{id}")

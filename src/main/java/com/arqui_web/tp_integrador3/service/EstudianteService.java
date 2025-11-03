@@ -30,12 +30,13 @@ public class EstudianteService {
 		Estudiante guardado = repository.save(e);
 		log.info("Estudiante creado con ID {}", guardado.getId());
 
-		return new EstudianteDTO(e.getId(), e.getNombre(), e.getApellido(), e.getFechaNacimiento(), e.getGenero(), e.getDni(),
-				e.getCiudad(), e.getNumLibreta());
+		return new EstudianteDTO(e.getId(), e.getNombre(), e.getApellido(), e.getFechaNacimiento(), e.getGenero(),
+				e.getDni(), e.getCiudad(), e.getNumLibreta());
 	}
 
-	public Optional<Estudiante> obtenerEstudiante(Long id) {
-		return repository.findById(id);
+	public Optional<EstudianteDTO> obtenerEstudiante(Long id) {
+		return repository.findById(id).map(e -> new EstudianteDTO(e.getId(), e.getNombre(), e.getApellido(),
+				e.getFechaNacimiento(), e.getGenero(), e.getDni(), e.getCiudad(), e.getNumLibreta()));
 	}
 
 	public Iterable<EstudianteDTO> obtenerEstudiantes() {
