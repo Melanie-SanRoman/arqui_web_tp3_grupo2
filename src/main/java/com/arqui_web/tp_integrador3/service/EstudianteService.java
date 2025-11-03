@@ -60,12 +60,21 @@ public class EstudianteService {
 	}
 
 	public Boolean deleteEstudiante(Long id) {
+//		Estudiante estudiante2 = repository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "No se ah encontrado un Estudiante con el id: ${id}"));
+
+		Optional<Estudiante> estudiante = repository.findById(id);
+
 		try {
-			repository.deleteById(id);
-			log.info("Estudiante con ID {} eliminado correctamente", id);
-			return true;
+			if (estudiante != null) {
+				log.error("Error, no se encontro estudiante con id {}", id);
+				return false;
+			} else {
+				repository.deleteById(id);
+				log.info("Estudiante con ID {} eliminado correctamente", id);
+				return true;
+			}
 		} catch (Exception e) {
-			log.error("Error eliminando estudiante con id {}", id, e);
+			log.error("Error eliminando estudiante con id {}", id);
 			return false;
 		}
 	}
