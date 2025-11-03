@@ -1,6 +1,7 @@
 
 package com.arqui_web.tp_integrador3.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.arqui_web.tp_integrador3.dto.EstudianteDTO;
 import com.arqui_web.tp_integrador3.model.Estudiante;
+import com.arqui_web.tp_integrador3.model.TipoGenero;
 import com.arqui_web.tp_integrador3.repository.EstudianteRepository;
 
 import jakarta.transaction.Transactional;
@@ -60,8 +62,6 @@ public class EstudianteService {
 	}
 
 	public Boolean deleteEstudiante(Long id) {
-//		Estudiante estudiante2 = repository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "No se ah encontrado un Estudiante con el id: ${id}"));
-
 		Optional<Estudiante> estudiante = repository.findById(id);
 
 		try {
@@ -77,5 +77,28 @@ public class EstudianteService {
 			log.error("Error eliminando estudiante con id {}", id);
 			return false;
 		}
+	}
+
+	public List<EstudianteDTO> listarPorApellido() {
+		return repository.getEstudiantesOrderByApellido().stream().map(e -> e.toEstudianteDTO()).toList();
+	}
+
+	public EstudianteDTO buscarPorNumLibreta(int num_libreta) {
+		return repository.getEstudianteByNumLibreta(num_libreta).toEstudianteDTO();
+	}
+
+	public List<EstudianteDTO> listarPorGenero(String genero) {
+		TipoGenero tipoGenero = null;
+	    if (genero != null) {
+	        tipoGenero = TipoGenero.valueOf(genero.toUpperCase());
+	    }
+		return repository.getEstudiantesGenero(tipoGenero).stream().map(e -> e.toEstudianteDTO()).toList();
+	}
+
+	public List<EstudianteDTO> listarPorCarreraYCiudad(Long carreraId, String ciudad) {
+
+		List<Estudiante> estudiantes = repository.getEstudiantesByCarrera(carreraId);
+
+		return estudiantes.stream().filter(e -> e.getCiudad().equalsIgnoreCase(ciudad)).map(e -> e.toEstudianteDTO()).toList();
 	}
 }

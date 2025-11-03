@@ -1,5 +1,6 @@
 package com.arqui_web.tp_integrador3.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arqui_web.tp_integrador3.dto.EstudianteDTO;
@@ -58,5 +60,31 @@ public class EstudianteController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+
+	@GetMapping("/byApellido")
+	public ResponseEntity<List<EstudianteDTO>> listarPorApellido() {
+		List<EstudianteDTO> lista = service.listarPorApellido();
+		return ResponseEntity.ok(lista);
+	}
+	
+	@GetMapping("/byNumLibreta/{num_libreta}")
+	public ResponseEntity<EstudianteDTO> buscarPorNumLibreta(@PathVariable int num_libreta){
+		EstudianteDTO encontrado = service.buscarPorNumLibreta(num_libreta);
+	    return (encontrado != null)
+	            ? ResponseEntity.ok(encontrado)
+	            : ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping("/byGenero")
+	public ResponseEntity<List<EstudianteDTO>> listarPorGenero(@RequestParam String genero){
+		List<EstudianteDTO> lista = service.listarPorGenero(genero);
+		return ResponseEntity.ok(lista);
+	}
+	
+	@GetMapping("/byCarreraCiudad/{carreraId}")
+	public ResponseEntity<List<EstudianteDTO>> listarPorCarreraYCiudad(@PathVariable Long carreraId, @RequestParam String ciudad){
+		List<EstudianteDTO> lista = service.listarPorCarreraYCiudad(carreraId, ciudad);
+		return ResponseEntity.ok(lista);
 	}
 }
