@@ -65,7 +65,7 @@ public class EstudianteService {
 		Optional<Estudiante> estudiante = repository.findById(id);
 
 		try {
-			if (estudiante != null) {
+			if (estudiante == null) {
 				log.error("Error, no se encontro estudiante con id {}", id);
 				return false;
 			} else {
