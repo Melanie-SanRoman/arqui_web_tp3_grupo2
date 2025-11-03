@@ -30,18 +30,15 @@ public class EstudianteService {
 		Estudiante guardado = repository.save(e);
 		log.info("Estudiante creado con ID {}", guardado.getId());
 
-		return new EstudianteDTO(e.getId(), e.getNombre(), e.getApellido(), e.getFechaNacimiento(), e.getGenero(),
-				e.getDni(), e.getCiudad(), e.getNumLibreta());
+		return e.toEstudianteDTO();
 	}
 
 	public Optional<EstudianteDTO> obtenerEstudiante(Long id) {
-		return repository.findById(id).map(e -> new EstudianteDTO(e.getId(), e.getNombre(), e.getApellido(),
-				e.getFechaNacimiento(), e.getGenero(), e.getDni(), e.getCiudad(), e.getNumLibreta()));
+		return repository.findById(id).map(e -> e.toEstudianteDTO());
 	}
 
 	public Iterable<EstudianteDTO> obtenerEstudiantes() {
-		return repository.findAll().stream().map(e -> new EstudianteDTO(e.getId(), e.getNombre(), e.getApellido(),
-				e.getFechaNacimiento(), e.getGenero(), e.getDni(), e.getCiudad(), e.getNumLibreta())).toList();
+		return repository.findAll().stream().map(e -> e.toEstudianteDTO()).toList();
 	}
 
 	@Transactional
@@ -55,12 +52,10 @@ public class EstudianteService {
 			e.setCiudad(dto.getCiudad());
 			e.setNumLibreta(dto.getNumLibreta());
 
-			Estudiante actualizado = repository.save(e);
+			repository.save(e);
 			log.info("Estudiante con ID {} actualizado correctamente", id);
 
-			return new EstudianteDTO(actualizado.getId(), actualizado.getNombre(), actualizado.getApellido(),
-					actualizado.getFechaNacimiento(), actualizado.getGenero(), actualizado.getDni(),
-					actualizado.getCiudad(), actualizado.getNumLibreta());
+			return e.toEstudianteDTO();
 		});
 	}
 

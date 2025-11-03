@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.arqui_web.tp_integrador3.dto.EstudianteDTO;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,6 +42,18 @@ public class Estudiante {
 
 	public Estudiante() {
 		super();
+	}
+
+	public EstudianteDTO toEstudianteDTO() {
+		return new EstudianteDTO(
+				getId(), 
+				getNombre(), 
+				getApellido(), 
+				getFechaNacimiento(), 
+				getGenero(), 
+				getDni(),
+				getCiudad(), 
+				getNumLibreta());
 	}
 
 	public Estudiante(String name, String apellido, LocalDate fecha_nacimiento, TipoGenero genero, int dni,

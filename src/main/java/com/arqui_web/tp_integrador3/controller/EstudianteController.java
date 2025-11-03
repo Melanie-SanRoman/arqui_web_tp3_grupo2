@@ -45,7 +45,7 @@ public class EstudianteController {
 		return ResponseEntity.ok(lista);
 	}
 
-	@PutMapping
+	@PutMapping("/{id}")
 	public ResponseEntity<EstudianteDTO> updateEstudiante(@RequestBody EstudianteDTO dto, @PathVariable Long id) {
 		return service.updateEstudiante(dto, id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
