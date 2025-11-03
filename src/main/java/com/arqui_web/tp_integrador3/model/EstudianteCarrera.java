@@ -2,6 +2,8 @@ package com.arqui_web.tp_integrador3.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -19,11 +21,13 @@ public class EstudianteCarrera {
 	@ManyToOne
 	@MapsId("estudianteId")
 	@JoinColumn(name = "estudiante_id")
+	@JsonIgnoreProperties("carreras")
 	private Estudiante estudiante;
 
 	@ManyToOne
 	@MapsId("carreraId")
 	@JoinColumn(name = "carrera_id")
+	@JsonIgnoreProperties("estudiantes")
 	private Carrera carrera;
 
 	@Column(nullable = false)
