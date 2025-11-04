@@ -8,17 +8,17 @@ import jakarta.persistence.Embeddable;
 @SuppressWarnings("serial")
 @Embeddable
 public class EstudianteCarreraId implements Serializable {
-	private Long estudianteId;
 	private Long carreraId;
+	private Long estudianteId;
 	
 	public EstudianteCarreraId() {
 		super();
 	}
 
-	public EstudianteCarreraId(Long estudianteId, Long carreraId) {
+	public EstudianteCarreraId(Long carreraId, Long estudianteId) {
 		super();
-		this.estudianteId = estudianteId;
 		this.carreraId = carreraId;
+		this.estudianteId = estudianteId;
 	}
 
 	public Long getEstudianteId() {

@@ -2,6 +2,7 @@ package com.arqui_web.tp_integrador3.model;
 
 import java.time.LocalDate;
 
+import com.arqui_web.tp_integrador3.dto.EstudianteCarreraDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
@@ -37,6 +38,14 @@ public class EstudianteCarrera {
 
 	public EstudianteCarrera() {
 		super();
+	}
+
+	public EstudianteCarreraDTO toInscripcionDTO() {
+		return new EstudianteCarreraDTO(
+				getEstudiante().getId(), 
+				getCarrera().getId(), 
+				getFecha_ingreso() != null ? getFecha_ingreso().toString() : null,
+				getFecha_egreso() != null ? getFecha_egreso().toString() : null);
 	}
 
 	public EstudianteCarrera(LocalDate fecha_ingreso, LocalDate fecha_egreso) {
