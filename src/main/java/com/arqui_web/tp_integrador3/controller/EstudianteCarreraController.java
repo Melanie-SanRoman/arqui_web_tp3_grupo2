@@ -35,10 +35,10 @@ public class EstudianteCarreraController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(creado);
 	}
 
-	@GetMapping("/{estudianteId}/{carreraId}")
-	public ResponseEntity<EstudianteCarreraDTO> obtenerInscripcionById(@PathVariable Long estudianteId,
-			@PathVariable Long carreraId) {
-		Optional<EstudianteCarreraDTO> encontrado = service.obtenerInscripcionById(estudianteId, carreraId);
+	@GetMapping("/{carreraId}/{estudianteId}")
+	public ResponseEntity<EstudianteCarreraDTO> obtenerInscripcionById(@PathVariable Long carreraId,
+			@PathVariable Long estudianteId) {
+		Optional<EstudianteCarreraDTO> encontrado = service.obtenerInscripcionById(carreraId, estudianteId);
 		return encontrado.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
 
@@ -48,7 +48,7 @@ public class EstudianteCarreraController {
 		return ResponseEntity.ok(lista);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping
 	public ResponseEntity<EstudianteCarreraDTO> updateInscripcion(@RequestBody EstudianteCarreraDTO dto) {
 		EstudianteCarreraDTO actualizado = service.updateInscripcion(dto);
 		return ResponseEntity.ok(actualizado);

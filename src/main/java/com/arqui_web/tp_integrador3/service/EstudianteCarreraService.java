@@ -70,7 +70,7 @@ public class EstudianteCarreraService {
 		return ec.toInscripcionDTO();
 	}
 
-	public Optional<EstudianteCarreraDTO> obtenerInscripcionById(Long estudianteId, Long carreraId) {
+	public Optional<EstudianteCarreraDTO> obtenerInscripcionById(Long carreraId, Long estudianteId) {
 		EstudianteCarreraId id = new EstudianteCarreraId();
 		id.setEstudianteId(estudianteId);
 		id.setCarreraId(carreraId);
@@ -83,7 +83,7 @@ public class EstudianteCarreraService {
 
 	@Transactional
 	public EstudianteCarreraDTO updateInscripcion(EstudianteCarreraDTO dto) {
-		EstudianteCarreraId id = new EstudianteCarreraId(dto.estudianteId(), dto.carreraId());
+		EstudianteCarreraId id = new EstudianteCarreraId(dto.carreraId(), dto.estudianteId());
 		EstudianteCarrera existente = repository.findById(id)
 				.orElseThrow(() -> new RuntimeException("La relación estudiante-carrera no existe"));
 
