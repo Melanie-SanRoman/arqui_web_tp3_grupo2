@@ -1,5 +1,6 @@
 package com.arqui_web.tp_integrador3.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -58,5 +59,11 @@ public class CarreraController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+
+	@GetMapping("/byInscriptos")
+	public ResponseEntity<List<CarreraDTO>> listarPorCantInscriptos() {
+		List<CarreraDTO> lista = service.listarPorCantInscriptos();
+		return ResponseEntity.ok(lista);
 	}
 }

@@ -1,5 +1,6 @@
 package com.arqui_web.tp_integrador3.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -68,5 +69,9 @@ public class CarreraService {
 			log.error("Error eliminando carrera con id {}", id);
 			return false;
 		}
+	}
+
+	public List<CarreraDTO> listarPorCantInscriptos() {
+		return repository.getCarrerasMayorInscripciones().stream().map(c -> c.toCarreraDTO()).toList();
 	}
 }
