@@ -64,7 +64,7 @@ _Para una implementación exitosa, proporcionamos una documentación completa qu
 
 ```json
 {
-    "id": 5,
+    "id": 4,
     "nombre": "Tomas",
     "apellido": "Martinez",
     "genero": "MASCULINO",
@@ -302,7 +302,7 @@ _Para una implementación exitosa, proporcionamos una documentación completa qu
 ***
 ### 5. Actualizar una inscripcion
 
-**Endpoint:** `.../inscripciones`
+**Endpoint:** `.../inscripciones/`
 
 **Método:** `PUT`
 
@@ -319,14 +319,13 @@ _Para una implementación exitosa, proporcionamos una documentación completa qu
 }
 ```
 ***
-### 6. Generar un reporte de las carreras, para cada carrera incluye información de los inscriptos y egresados por año. Se ordenan las carreras alfabéticamente, y
-se presentan los años de manera cronológica.
+### 6. Generar un reporte de las carreras, para cada carrera incluye información de los inscriptos y egresados por año. Se ordenan las carreras alfabéticamente, y se presentan los años de manera cronológica.
 
-**Endpoint:** `.../carreras/:BY`
+**Endpoint:** `.../inscripciones/:BY`
 
 **Método:** `GET`
 
-**Uso de ejemplo:** `http://.../carreras/reporte`
+**Uso de ejemplo:** `http://.../inscripciones/reporte`
 
 ***
 
@@ -336,3 +335,4 @@ se presentan los años de manera cronológica.
 > * Lopez, Micaela N.
 > * San Roman, Emanuel.
 > * San Roman, Melanie.
+
