@@ -38,7 +38,6 @@ _Para una implementación exitosa, proporcionamos una documentación completa qu
     * byGenero
     * byCarreraCiudad
     * byInscriptos
-* **ORDER**: ASC/DESC
 ***
 
 ## Implementacion de Endpoints para Estudiantes
@@ -128,13 +127,13 @@ _Para una implementación exitosa, proporcionamos una documentación completa qu
 }
 ```
 ***
-### 6. Listar todos los estudiantes por apellido de manera ascendente o descendente
+### 6. Listar todos los estudiantes por apellido de manera ascendente
 
-**Endpoint:** `.../estudiantes/:BY/:ORDER`
+**Endpoint:** `.../estudiantes/:BY`
 
 **Método:** `GET`
 
-**Uso de ejemplo:** `http://.../estudiantes/byApellido/ASC`
+**Uso de ejemplo:** `http://.../estudiantes/byApellido`
 
 ***
 ### 7. Obtener un estudiante por su numero de libreta
@@ -233,13 +232,13 @@ _Para una implementación exitosa, proporcionamos una documentación completa qu
 }
 ```
 ***
-### 6. Listar todas las carreras por cantidad de inscriptos de manera ascendente o descendente
+### 6. Listar todas las carreras por cantidad de inscriptos de manera descendente
 
-**Endpoint:** `.../carreras/:BY/:ORDER`
+**Endpoint:** `.../carreras/:BY`
 
 **Método:** `GET`
 
-**Uso de ejemplo:** `http://.../carreras/byInscriptos/ASC`
+**Uso de ejemplo:** `http://.../carreras/byInscriptos`
 
 ***
 ## Implementacion de Endpoints para inscripciones
@@ -335,4 +334,5 @@ _Para una implementación exitosa, proporcionamos una documentación completa qu
 > * Lopez, Micaela N.
 > * San Roman, Emanuel.
 > * San Roman, Melanie.
+
 
